@@ -21,5 +21,9 @@ Le site est réalisé en Python avec le framework Django et la base de donnée S
 >
 > Connexion sauvegardée
 
-
-
+## Prochainement ...
+- Déploiement sur PythonAnywhere/Heroku
+- Tests unitaires
+- Responsive
+- Pages restantes (Mon compte, Gemmologie)
+- Connexion avec PayPal et Stripe
