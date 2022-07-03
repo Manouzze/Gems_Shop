@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'dashboard.css' %}">
+
+
+
+ {% include 'alerts.html' %}
+ 
+ 
+ <div class="dashboard-container">
+     <div class="menu_dashboard">
+            <p>DASHBOARD</p>
+            <a href="">My order history</a>
+            <a href="">Transactions</a>
+            <a href="">Return and refunds</a>
+            <a href="">Settings</a>
+            <a href="">My settings items</a>
+            <a href="">Received order</a>
+            <a href="{% url 'logout' %}">Log out</a>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a purus tempus, congue metus et, elementum ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin quis consequat ante. Duis consequat lectus quis dui imperdiet rutrum. Sed feugiat elementum urna at commodo. Nullam varius et nisi id venenatis. Integer accumsan vitae odio vitae sodales. Pellentesque id leo sed augue auctor molestie. Nullam porta hendrerit urna, ac consectetur lacus lacinia quis. Mauris laoreet odio vel leo sollicitudin facilisis. Nam eu rhoncus quam. Quisque eu purus nec neque lacinia cursus quis ac ex. Mauris ultricies vulputate sapien vitae efficitur. Sed vestibulum sapien elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse porta ante ac ante dapibus finibus.</p>
+    </div>
+
+{% endblock %}

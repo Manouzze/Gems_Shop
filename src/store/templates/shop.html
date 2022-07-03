@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/shop.css' %}">
+
+<div><h1>La Boutique 🔥</h1></div>
+
+
+<h2>Les Articles 👇</h2>
+<div class="filter">
+    <a href="{% url 'shop' %}" class="allGem">All Gems</a>
+    {% for category in links %}
+    <a href="{{ category.get_url }}" class="category">{{ category.category_name|title }}</a>
+    {% endfor %}
+</div>
+
+
+<div><p>Actuellement {{ gem_count }} modèles de gemmes disponible</p><br></div>
+
+
+
+<div class="container_products">
+
+{% for gem in gems %}
+
+    <div class="products">
+        <a href="{{ gem.get_url }}"><h3>{{ gem.gem_name|title }}</h3></a>
+        <a href="{{ gem.get_url }}"><img src="{{ gem.images.url }}" class="img_products" alt="{{ gem.name }}"></a>
+        <div>Prix : {{ gem.price }}$</div>
+        <div class="category-product">Groupe mineral : {{ gem.category|title }}</div>
+        <a href="{{ gem.get_url }}"><h4>Voir l'article</h4></a>
+    </div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

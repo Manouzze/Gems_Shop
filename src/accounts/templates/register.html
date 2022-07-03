@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="register">
+
+  <h1>Register ☄️</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a purus tempus, congue metus et, elementum ante.</p>
+
+  <div class="form_register">
+
+  
+    <form method="POST" action="{% url 'register' %}" >
+    {% csrf_token %}
+
+    {% include 'alerts.html' %}
+      {{ form }}
+    <input type="submit" value="Submit">
+    </form>
+    
+  </div>
+
+    <p>Have an account? <a href="{% url 'login' %}">Log In</a></p>
+
+</div>
+
+
+
+{% endblock %}

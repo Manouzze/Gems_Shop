@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'checkout.css' %}">
+
+
+<h1>Checkout 🔥</h1>
+<p class="description_checkout">Suspendisse rhoncus nisl ut metus posuere mollis. Sed quis velit dignissim, lobortis elit quis, viverra lectus. In facilisis ultrices venenatis. Aliquam cursus finibus hendrerit. Morbi rutrum ut odio vel iaculis.
+  Mauris sagittis enim in justo ultrices, in vehicula est viverra. Maecenas ut neque dapibus eros malesuada lacinia a nec nunc. Nullam eu hendrerit mi, ac gravida ipsum. Curabitur ac fringilla nibh. Sed elementum cursus velit.
+</p>
+<form method="POST" action="{% url 'place_order' %}" class="block_global">
+  <div class="container_address">
+    {% csrf_token %}
+      <p><b>Détails / Livraison 📦 </b></p>
+      <div>
+        <label>Prénom</label>
+        <input type="text" name="first_name" required>
+      </div>
+    
+      <div>
+        <label>Nom</label>
+        <input type="text" name="last_name" required>
+      </div>
+    
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+    
+      <div>
+        <label>Téléphone</label>
+        <input type="text" name="phone" >
+      </div>
+    
+      <div>
+        <label>Adresse</label>
+        <input type="text" name="address_line_1" required>
+      </div>
+    
+      <div>
+        <label>Complément d'adresse</label>
+        <input type="text" name="address_line_2" >
+      </div>
+    
+      <div>
+        <label>Ville</label>
+        <input type="text" name="city" required>
+      </div>
+      <div>
+        <label>State</label>
+        <input type="text" name="state" required>
+      </div>
+      <div>
+        <label>Pays</label>
+        <input type="text" name="country" >
+      </div>
+    
+      <div>
+        <label>Détails</label>
+        <textarea name="order_note" row="3"></textarea>
+      </div>
+  </div>
+  
+  
+  <div class="cart_for_order">
+    
+    {% for cart_item in cart_items %}
+    
+      
+      <img src="{{ cart_item.gem.images.url }}" class="article_img">
+      <a href="{{ cart_item.gem.get_url }}">{{ cart_item.gem.gem_name|title }}</a>
+      <p>
+        {% if cart_item.variations.all %}
+          {% for item in cart_item.variations.all %}
+            {{ item.vartion_category | capfirst }} : {{ item.variation_value | capfirst }}
+          {% endfor %}
+        {% endif %}
+      </p>
+
+      <label for="">{{cart_item.quantity}}</label>
+      <p>{{ cart_item.gem.price }}$</p>
+
+    {% endfor %}
+
+  </div>
+
+  <div class="order_or_continu">
+    <button type="submit" name="submit">Place Order</button>
+    <a href="{% url 'shop' %}">Continuer mes achats</a>  
+  </div>
+
+</form>
+
+
+
+
+
+
+
+{% endblock %}

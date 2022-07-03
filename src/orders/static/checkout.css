@@ -1,0 +1,29 @@
+h1, .description_checkout{
+  text-align: center;
+  margin: 50px;
+}
+.article_img{
+  width: 100px;
+}
+
+.block_global{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 50px;
+}
+
+.container_address, .order_or_continu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.cart_for_order{
+  max-width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+ 
+}

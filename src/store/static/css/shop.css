@@ -1,0 +1,36 @@
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.img_products{
+  width: 200px;
+}
+
+.products{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  height: 330px;
+}
+
+.container_products{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1650px;
+}
+
+.allGem, .category{
+  margin: 0 5px;
+  font-style: italic;  
+}
+
+.category-product{
+  font-style: italic;
+}
+

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'payments.css' %}">
+
+
+
+
+<h1>Payments</h1>
+
+<h3>Détails de votre commande</h3>
+
+<div class="user_address">
+    <h5>Adresse</h5>
+    <p>{{ order.full_name }}</p>
+    <p>{{ order.full_address }}</p>
+    <p>{{ order.city }}</p>
+    <p>{{ order.state }}</p>
+    <p>{{ order.country }}</p>
+    <p>{{ order.phone }}</p>
+    
+    {% if order.order_note %}
+        <p>Order Note : {{ order.order_note }}</p>
+    {% endif %}
+</div>
+
+
+<div class="payment_method">
+
+    <h5>Méthode de payments</h5>
+
+    <p>Paypal</p>
+    <p>Carte de crédit</p>
+
+    
+</div>
+
+
+{% for cart_item in cart_items %}
+<div class="detail_command">
+    <h5>Commande</h5>
+
+    <a href="{{ cart_item.gem.get_url }}"><img class='img_product' src="{{ cart_item.gem.images.url }}" alt="{{ gem.name }}"></a>
+    
+    <a href="{{ cart_item.gem.get_url }}">Gemme : {{ cart_item.gem.gem_name|title }}</a>
+    
+    <div class="gem_variation">
+        {% if cart_item.variations.all %}
+            {% for item in cart_item.variations.all %}
+                {{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+            {% endfor %}
+        {% endif %}
+            <p>Quantité : {{ cart_item.quantity }}</p>
+            <p>Prix : {{ cart_item.gem.price }}</p>
+{% endfor %}
+    </div>
+    
+        
+</div>
+
+<div class="payment">
+    <p>Prix Total : {{ total }}</p>
+    <p>Taxes : {{ tax }}</p>
+    <p>Grand Total : {{ grand_total }}</p>
+</div>
+
+
+
+{% endblock %}

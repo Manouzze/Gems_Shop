@@ -1,0 +1,64 @@
+
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+
+
+<header>
+
+
+    <div class="nav_home">
+        <a href="{% url 'home' %}"><h4>Accueil</h4></a>
+    </div>
+
+    <div class="nav_shop">
+      <a href="{% url 'shop' %}"><h4>Gemmmes</h4></a>
+    </div>
+
+    <div>
+      <a href="{% url 'shop' %}"><img class="logo" src="{% static 'images/logo.png' %}"></a>
+    </div>
+
+    <div class="nav_gemmologie">
+      <a href=""><h4>Gemmologie</h4></a>
+    </div>
+    
+    <div class="nav_contact">
+      <a href=""><h4>Contact</h4></a>
+    </div>
+    
+
+</header>
+
+
+<div class="container">
+
+  {% if user.is_authenticated %}
+  
+    <p>Bonjour {{ user.username|title }}</p>
+    <a href="{% url 'dashboard' %}">Compte</a>
+    <a href="{% url 'logout' %}">Déconnexion</a>
+          
+  {% else %}
+
+    <a href="{% url 'login' %}">Connexion</a>
+    <a href="{% url 'register' %}">S'inscrire</a>
+  </div>
+              
+  {% endif %}
+        
+ 
+    <a href="{% url 'cart' %}"><h4>Panier({{cart_count}})</h4></a>
+  
+    
+</div>
+  
+ 
+
+
+
+
+

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/gem_detail.css' %}">
+
+
+
+<div class="gem_container_detail">
+
+    <div class="details_page_product">
+
+        <div class="block-img">
+            <h2>{{ single_gem.gem_name|title }}</h2>
+            <img class='img_products' src="{{ single_gem.images.url }}" alt="{{ single_gem.name }}">
+    
+        </div>
+    
+        <div class="select">
+    
+            <form  method="POST" action="{% url 'add_cart' single_gem.id %}">
+                {% csrf_token %}
+                <div>
+                    <p>{{ single_gem.color|title }}</p>
+                    <p>{{ single_gem.category|title }}</p>
+                    <p>Choisir le Carat</p>
+                    <select name="carat" required>
+                        <option value="" disable selected>Select</option>
+                        {% for i in single_gem.variation_set.carat %}
+                        <option value="{{ i.variation_value }}">{{ i.variation_value | capfirst }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div>
+                    <p>Choisir la Qualité</p>
+                    <select name="quality" required>
+                        <option value="" disable selected>Select</option>
+                        {% for i in single_gem.variation_set.quality %}
+                        <option value="{{ i.variation_value }}">{{ i.variation_value | capfirst  }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <p>{{ single_gem.price }}$</p>
+    
+                <div>
+                    {% if single_gem.stock <= 0 %}
+                        <h4>Rupture de Stock</h4>
+                    {% else %}
+    
+                        <button type="submit"><h4>Ajouter au panier 🔥</h4></button>
+                    {% endif %}
+    
+                </div>
+        
+            </form>
+
+        </div>
+
+    </div>
+   
+
+    <p class="description">{{ single_gem.content }}</p>
+
+</div>
+
+
+
+
+
+{% endblock %}

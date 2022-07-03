@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+
+<h1>PANIER 🔥</h1>
+
+
+{% if not cart_items %}
+
+        <h3>Votre panier est vide</h3>
+        <a href="{% url 'shop' %}">Retournez à la boutique 👉</a>
+
+{% else %}
+
+<h2>Articles au panier</h2>
+
+<div class="container_global">
+    
+    
+    
+    {% for cart_item in cart_items %}
+    
+    <div class="container_gem">
+            <a href="{{ cart_item.gem.get_url }}"><img class="img_product" src="{{ cart_item.gem.images.url }}" alt="{{ gem.name }}"></a>
+     
+     
+            <a href="{{ cart_item.gem.get_url }}">{{ cart_item.gem.gem_name|title }}</a>
+      
+            {% if cart_item.variations.all %}
+                {% for item in cart_item.variations.all %}
+                    {{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+                {% endfor %}
+            {% endif %}
+    
+            <p>Quantité :  {{ cart_item.quantity }}</p>
+            <p>Prix :  {{ cart_item.gem.price }}$</p>
+        
+            <form method="POST" action="{% url 'add_cart' cart_item.gem.id %}">
+                {% csrf_token %}
+                    {% for item in cart_item.variations.all %}
+                        <input type="hidden" name="{{ item.variation_category | lower }}" value="{{ item.variation_value | capfirst }}">
+                    {% endfor %}
+            </form>
+
+            <button type="submit"><a href="{% url 'add_cart' cart_item.gem.id %}">add</a></button>
+            <button type="submit"><a href="{% url 'remove_cart' cart_item.gem.id cart_item.id %}">moins</a></button>
+       
+            <a href="{% url 'remove_cart_item' cart_item.gem.id cart_item.id %}">Supprimer</a>
+     
+    </div>
+        
+        {% endfor %}
+
+
+    <div class="container_choice">
+
+    
+        <div class="price">
+            <p>Prix Total : {{ total }}</p>
+            <p>Taxes : {{ tax }}</p>
+            <p>Grand Total : {{ grand_total }}</p>
+        </div>
+
+        <div class="button">
+            <div>
+                <a href="{% url 'shop' %}">Continuer les achats 👉</a>
+            </div>
+            <div>
+                <a href="{% url 'checkout' %}">Checkout 👉</a>
+            </div>
+        </div>
+        
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

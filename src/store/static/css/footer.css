@@ -1,0 +1,47 @@
+article{
+  background-color: #2b2d42;
+  color: white;
+  width: 100%;
+}
+
+.details_footer{
+  font-family: 'Noto Serif', serif;
+  height: 300px;
+
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  
+}
+
+.footer-compagny, .footer-products, .footer-gemmologie, .footer-user, .footer-contact{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.footer-products, .footer-gemmologie, .footer-user, .footer-contact{
+  width: 200px;
+}
+
+.footer-compagny{
+  width: 400px;
+}
+
+.logo_diamant{
+  width: 30px;
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.twitter, .instagram, .github{
+  margin: 20px 15px;
+}

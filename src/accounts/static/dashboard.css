@@ -1,0 +1,12 @@
+.dashboard-container, .menu_dashboard{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 50px;
+
+}
+
+.menu_dashboard{
+  font-size: 16px;
+  
+}

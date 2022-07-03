@@ -1,0 +1,30 @@
+
+a, body{
+  text-decoration: none;
+  color: #1b1d1f;
+  font-family: 'Noto Serif', serif;
+  font-size: 15px;
+}
+
+
+header{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  font-size: 16px;
+}
+
+.container{
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 15px;
+  
+}
+
+.logo{
+  width: 80px;
+}
