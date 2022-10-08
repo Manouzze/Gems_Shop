@@ -38,6 +38,7 @@ def register(request):
 
 
             # save form in the memory not in database  
+            
             #user = form.save(commit=False)  
             #user.is_active = False  
             #user.save() 

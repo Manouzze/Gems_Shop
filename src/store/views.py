@@ -13,6 +13,9 @@ def home(request):
     return render(request, 'home.html', context={'products': products})
 
 
+
+
+
 def gem_detail(request, category_slug, gem_slug):
     try:
         single_gem = Gem.objects.get(category__slug=category_slug, slug=gem_slug)
@@ -20,6 +23,11 @@ def gem_detail(request, category_slug, gem_slug):
     except Exception as e:
         raise e
     return render(request, "gem_detail.html", context={'single_gem': single_gem, 'in_cart': in_cart, })
+
+
+
+
+
 
 def shop(request, category_slug=None):
     categories = None

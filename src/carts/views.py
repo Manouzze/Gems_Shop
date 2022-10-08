@@ -18,12 +18,13 @@ def cart_id_session(request):
         cart = request.session.create()
     return cart
 
-# -----------------ADD CART---------------
+# -----------------ADD CART-------------------#
 
 def add_cart(request, gem_id):
     current_user = request.user
     gem = Gem.objects.get(id=gem_id) #get the product
-    # IF THE USER IS AUTHENTICATED
+
+    # ----------- IF THE USER IS AUTHENTICATED -------------------#
     if current_user.is_authenticated:
         gem_variation = []
         if request.method == 'POST':
@@ -54,23 +55,31 @@ def add_cart(request, gem_id):
                 id.append(item.id)
 
             if gem_variation in ex_var_list:
+                print(gem_variation)
+                print(ex_var_list)
                 # increase the cart item quantity
                 index = ex_var_list.index(gem_variation)
+                print(index)
                 item_id = id[index]
+                print(item_id)
                 item = CartItem.objects.get(gem=gem, id=item_id)
+                print(item)
+                print(item.gem)
+                print(item.id)
                 item.quantity += 1
+                print("TATA")
                 item.save()
 
             else:
                 item = CartItem.objects.create(gem=gem, quantity=1, user=current_user)
                 if len(gem_variation) > 0:
                     item.variations.clear()
+                    print("T000TA")
                     item.variations.add(*gem_variation)
                 item.save()
 
         else:
-            print('is_cart_item_ does not exists')
-            print(current_user)
+
             cart_item = CartItem.objects.create(gem=gem, quantity=1, user=current_user)
             if len(gem_variation) > 0:
                 cart_item.variations.clear()
@@ -114,8 +123,7 @@ def add_cart(request, gem_id):
                 existing_variation = item.variations.all()
                 ex_var_list.append(list(existing_variation))
                 id.append(item.id)
-
-            print(ex_var_list)
+                
 
             if gem_variation in ex_var_list:
                 # increase the cart item quantity
@@ -124,7 +132,7 @@ def add_cart(request, gem_id):
                 item = CartItem.objects.get(gem=gem, id=item_id)
                 item.quantity += 1
                 item.save()
-
+               
             else:
                 item = CartItem.objects.create(gem=gem, quantity=1, cart=cart)
                 if len(gem_variation) > 0:
